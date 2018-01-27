@@ -1,0 +1,8 @@
+// Basic horizontal drop shdow
+@mixin dropshadow {
+  box-shadow: .2rem .3rem .5rem rgba($color-black, .4);
+}
+
+@mixin dropshadow-darker {
+  box-shadow: .3rem .4rem 1rem rgba($color-black, .6);
+}

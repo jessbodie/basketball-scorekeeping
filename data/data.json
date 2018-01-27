@@ -1,0 +1,101 @@
+{
+    "teamHome": {
+        "id": "OLA001",
+        "name": "OLA - West",
+        "coach": "Mike Deida",
+        "roster": [[ 1, {
+                "fName": "Eamon", 
+                "lName": "Richards", 
+                "number": 35
+                }],
+                [ 3,                 {
+                "fName": "Liam", 
+                "lName": "Richards", 
+                "number": 47
+                }]
+            ]
+    },
+
+    "teamGuest": {
+        "id": "PAT002",
+        "name": "St. Patrick's Mad Dogs",
+        "coach": "Another Guy",
+        "roster": [
+            [2,
+                {
+                "fName": "Jeremy", 
+                "lName": "Lin", 
+                "number": 7
+                }
+            ],
+            [4,
+                {
+                "fName": "Kareem", 
+                "lName": "Abdul-Jabbar", 
+                "number": 33
+                }
+            ],
+            [6,
+                {
+                "fName": "Stephen", 
+                "lName": "Curry", 
+                "number": 30
+                }
+            ],
+            [8,
+                {
+                "fName": "Michael", 
+                "lName": "Jordan", 
+                "number": 23
+                }
+            ],
+            [10,
+                {
+                "fName": "Joe", 
+                "lName": "Ng", 
+                "number": 1
+                }
+            ],
+            [12,
+                {
+                "fName": "Longish", 
+                "lName": "Reallylonglastname", 
+                "number": 55
+                }
+            ]
+        ]
+    },
+
+    "schedule": [
+        {
+            "game01": [
+                {
+                    "id": "001",
+                    "location": "OLA",
+                    "date": "3/12/2018",
+                    "homeTeam": "",
+                    "guestTeam": "",
+                    "activities": [
+                        {
+                            "id": 1,
+                            "period": "", 
+                            "teamID": "", 
+                            "playerID": "", 
+                            "type": ""
+                        },
+                        {
+                            "id": 2,
+                            "period": "1st", 
+                            "teamID": "OLA-001", 
+                            "playerID": "001", 
+                            "type": "foulShot"
+                        }
+                    ] 
+                }
+
+            ]
+        }
+
+    ]
+}    
+

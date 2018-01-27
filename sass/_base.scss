@@ -1,0 +1,108 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-default-size;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 11rem
+      [sb-end sk-start] 1fr [sk-end];
+  grid-template-columns: 
+      [left-start sb-home-start] minmax(18rem, 6fr)
+      [sb-home-end sb-guest-start] minmax(12rem, 6fr) 
+      [sb-guest-end right-end];
+  // padding: 3rem 0 0 3rem; // DEBUG
+  width: 100%;
+  min-height: 100vh;
+  min-width: 60rem;
+  background-color: $color-home-light;
+}
+
+
+.btn-edit {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  font-family: $font-primary;
+  font-weight: 600;
+  font-size: 2rem;
+  background: radial-gradient(circle at top left,  
+      $color-white 0%, 
+      $color-home-light 70%, 
+      $color-home-dark 100%);
+
+  color: $color-gray-dark;
+  @include dropshadow;
+  z-index: 999;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: radial-gradient(circle at bottom right,  
+      $color-home-light 0%, 
+      $color-home-dark 70%, 
+      $color-gray-dark 100%);
+    color: $color-white;
+    @include dropshadow-darker;
+  }
+}
+
+.field-edit {
+  width: 3.5rem;
+  height: 3rem;
+  border-radius: 3px;
+  border: none;
+  color: $color-black;
+  font-family: $font-primary;
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: right;
+  padding: 0 .5rem;
+  margin-right: 1rem;
+
+  background: linear-gradient(-10deg,  
+    $color-home-dark 0%, 
+    $color-home-light 30%, 
+    $color-white 100%);
+
+  @include dropshadow;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $color-white; 
+    @include dropshadow-darker;
+  }
+
+}
+
+.field-edit--single {
+  width: 2.5rem;
+}
+
+
+// Hides spinners aka arrowrs inside number fields
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+// Hides spinners in Firefox
+input[type=number] {
+  -moz-appearance: textfield;
+  }

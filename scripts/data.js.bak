@@ -1,0 +1,41 @@
+console.log("data.js started")
+// DUMMY DATA
+
+var playerHome = new Map();
+var playerGuest = new Map();
+
+var home = { 
+    id: "OLA-001",
+    name: "OLA - West",
+    coach: "Mike Deida",
+    roster: [
+        playerHome.set(1, {fName: "Eamon", lName: "Richards", number: 35}),
+        playerHome.set(3, {fName: "Liam", lName: "Richards", number: 47})
+    ] 
+};
+
+
+var guest = { 
+    id: "PAT-002",
+    name: "St. Patrick's Mad Dogs",
+    coach: "Another Guy",
+    roster: [
+        playerGuest.set(2, {fName: "John", lName: "Reallylongnameyo", number: 5}),
+        playerGuest.set(4, {fName: "Fingles", lName: "Doesn'tmatter", number: 0})]
+};
+
+var schedule = { 
+    game01: {
+        id: 001,
+        location: "OLA",
+        date: "3/12/2018",
+        homeTeam: home.id,
+        guestTeam: guest.id,
+        activities: [
+            {id: 1, period: "", teamID: "", playerID: "", type: ""},
+            {id: 2, period: "Q4", teamID: home.id, playerID: "001", type: "foulShot"}
+               
+        ] 
+    }
+};
+

@@ -1,0 +1,96 @@
+.sk {
+  background-color: $color-guest-light;
+  grid-column: left-start / right-end;
+  grid-row-start: sk-start / -1;
+  width: 100%;
+  height: 100%;
+
+  table {
+    vertical-align: middle;
+    white-space: nowrap;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  thead tr {
+    background: linear-gradient(0deg,  
+        rgba($color-guest-dark, .5) 0%, 
+        $color-guest-dark 30%,
+        $color-guest-dark 100%);
+  }
+
+  tbody tr:nth-child(odd) {
+    background: linear-gradient(0deg,  
+        rgba($color-guest-dark, .5) 0%, 
+        // $color-guest-dark 50%,
+        $color-guest-dark 15%,
+        $color-guest-dark 75%,
+        rgba($color-guest-dark, .5) 100%); 
+  }
+
+  tbody tr:nth-child(even) {
+    background: linear-gradient(0deg,  
+        rgba($color-guest-light, 1) 0%, 
+        rgba($color-guest-dark, .15) 50%,
+        rgba($color-guest-light, 1) 100%); 
+  }
+
+  td, th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  th {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  td {
+    padding-top: .75rem;
+    padding-bottom: 1.25rem;
+  }
+
+  &__label {
+    font-weight: 600;
+    text-align: center;
+    padding: .5rem;
+    font-size: $font-label-size;
+
+    &--name {
+      width: 15rem;
+      text-align: left;
+    }
+
+    &--number {
+      width: 4rem;
+    }
+
+    &--edit {
+      width: 25%;
+    }
+  }
+
+  &__player {
+
+    &--name {
+      text-align: left;
+    }
+
+    &--number {
+      text-align: right;
+    }
+
+    &--edit {
+      text-align: center;
+    }
+
+  }
+}
+
+// td.sk__player--name {
+//   text-align: left;
+// }

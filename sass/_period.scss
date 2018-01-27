@@ -1,0 +1,47 @@
+.period {
+  // background-color: $color-secondary-light;
+  grid-row: 2 / 3;
+  grid-row: row-periods-start / row-periods-end;
+  grid-column: sb-start / sb-end;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+
+
+  &__num {
+    flex: 1 1 auto;
+    color: $color-black;
+    text-align: center;
+    line-height: 2.5rem;
+    height: 100%;
+    padding: .5rem;
+    background: linear-gradient(-5deg,  
+        $color-secondary-dark, 
+        $color-secondary-light);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+      
+    @include dropshadow-darker;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: linear-gradient(-5deg,  
+        $color-secondary-light, 
+        $color-secondary-dark);
+      color: $color-white;
+    }
+
+    &--active {
+      background: linear-gradient(-5deg,  
+        $color-secondary-dark, 
+        $color-gray-dark);
+      font-weight: 600;
+
+      }
+  }
+
+}

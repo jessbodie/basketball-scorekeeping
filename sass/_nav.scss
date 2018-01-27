@@ -1,0 +1,183 @@
+.nav {
+  grid-row: 1 / sb-end;
+  grid-column: left-start / right-end;
+  z-index: $z-index-menu; 
+
+  position: relative;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__btn {
+    position: absolute;
+    top: .8rem;
+    left: 1rem;
+    cursor: pointer;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(circle at top left,  
+        $color-white 0%, 
+        $color-secondary-light 70%, 
+        $color-secondary-dark 100%);
+  
+    color: $color-gray-dark;
+    @include dropshadow;
+  
+    &:hover,
+    &:focus,
+    &:active {
+      background: radial-gradient(circle at bottom right,  
+        $color-secondary-light 0%, 
+        $color-secondary-dark 70%, 
+        $color-gray-dark 100%);
+      @include dropshadow-darker;
+    }
+  
+
+    &-elements {
+      background-color: $color-gray-dark;
+      border: none;
+      border-radius: 0;
+      height: 3px;
+      width: 1.5rem;
+      position: absolute;
+      top: 48%;
+      left: .7rem;
+  
+      &::before,
+      &::after {
+        background-color: $color-gray-dark;
+        height: 3px;
+        width: 1.5rem;
+        content: "";
+        display: block;
+      }
+    
+      &::before {
+        transform: translateY(-6px);
+      }
+    
+      &::after {
+        transform: translateY(-14px);
+      }
+  
+    }
+
+  }
+
+
+  &__expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-menu; 
+    background: linear-gradient(0deg,  
+      rgba($color-gray-dark, .9),
+      rgba($color-secondary-dark, .95));
+    color: $color-black; 
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    ul {
+      margin: 4rem auto;
+      list-style: none;
+      min-height: 100%;
+      text-align: center;
+      width: 40%;
+    }
+
+    li {
+      border-radius: 5px;
+      background: linear-gradient(0deg,  
+      $color-home-dark 0%,
+      $color-home-light 50%,
+        $color-white 100%);
+      margin-bottom: 1.5rem;  
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: linear-gradient(0deg,  
+            $color-gray-dark 50%,
+            $color-home-dark 100%);
+        @include dropshadow-darker;
+      }
+      
+
+    }
+
+    a:link,
+    a:visited {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: $color-gray-dark;
+      font-size: $font-default-size;
+      font-weight: bold;
+
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $color-white;
+      }
+
+    }
+  }
+  
+  // FUNCTIONALITY FOR SHOWING NAV MENU
+
+  &__checkbox:checked ~ &__expanded {
+    width: 100%;
+    height: 100vh;
+    opacity: 1;
+  }
+
+  &__checkbox:checked + &__btn {
+    z-index: $z-index-menu-btn;
+
+    &:hover,
+    &:focus,
+    &:active {
+        // background: radial-gradient(circle at bottom right,  
+        //   $color-home-dark 0%, 
+        //   $color-gray-dark 70%, 
+        //   $color-black 100%);
+          filter: invert(100%);
+      // @include dropshadow-darker;
+    }
+
+
+  }
+
+  &__checkbox:checked + &__btn &__btn-elements {
+    transform: rotate(-45deg);
+
+    &:hover,
+    &:focus,
+    &:active {
+      filter: invert(100%);
+      // background-color: $color-white;
+    }
+
+  }
+
+  &__checkbox:checked + &__btn &__btn-elements::before {
+    transform: rotate(90deg);
+    &:hover,
+    &:focus,
+    &:active {
+      // background-color: $color-white;
+    }
+  }
+
+  &__checkbox:checked + &__btn &__btn-elements::after {
+    display: none;
+  }
+
+}
