@@ -1,14 +1,15 @@
 .period {
-  // background-color: $color-secondary-light;
-  grid-row: 2 / 3;
-  grid-row: row-periods-start / row-periods-end;
-  grid-column: sb-start / sb-end;
+  grid-row: sb-end / sk-start;
+  // grid-column: sb-home-start / sb-home-end;
 
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: stretch;
+  z-index: $z-index-periods;
+  // background-color: transparent;
+
 
 
   &__num {

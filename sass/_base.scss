@@ -18,8 +18,9 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 11rem
-      [sb-end sk-start] 1fr [sk-end];
+  grid-template-rows: auto
+      [sb-end] auto 
+      [sk-start] 1fr [sk-end];
   grid-template-columns: 
       [left-start sb-home-start] minmax(18rem, 6fr)
       [sb-home-end sb-guest-start] minmax(12rem, 6fr) 
@@ -28,7 +29,14 @@ body {
   width: 100%;
   min-height: 100vh;
   min-width: 60rem;
-  background-color: $color-home-light;
+  // background-color: $color-guest-light;
+  // background-color: $color-home-light;
+
+  //   DEBUG
+  //   & > * {
+  //   border: 1px solid black;
+  // }
+
 }
 
 
@@ -57,6 +65,7 @@ body {
       $color-home-dark 70%, 
       $color-gray-dark 100%);
     color: $color-white;
+    outline: none;
     @include dropshadow-darker;
   }
 }
@@ -85,6 +94,7 @@ body {
   &:focus,
   &:active {
     background: $color-white; 
+    outline: none;
     @include dropshadow-darker;
   }
 

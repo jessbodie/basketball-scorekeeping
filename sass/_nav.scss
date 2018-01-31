@@ -1,7 +1,9 @@
 .nav {
   grid-row: 1 / sb-end;
   grid-column: left-start / right-end;
-  z-index: $z-index-menu; 
+  // z-index: 1;
+   
+
 
   position: relative;
 
@@ -14,7 +16,9 @@
     top: .8rem;
     left: 1rem;
     cursor: pointer;
+    z-index: $z-index-menu-btn;
 
+  
     width: 3rem;
     height: 3rem;
     border-radius: 50%;

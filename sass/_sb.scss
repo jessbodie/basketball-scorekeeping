@@ -1,53 +1,73 @@
 .sb {
 
   display: grid;
-  grid-template-rows: repeat(2, 2.75rem) 
-      [row-to-starts row-periods-start] auto
-      [row-periods-end];
+  grid-template-rows: repeat(2, 2.75rem) .2rem [sb-end];
   grid-template-columns: [sb-start] minmax(1rem, auto) 
       [sb-content-start] minmax(max-content, 3fr)
       [sb-fouls-end sb-tech-start] minmax(1rem, 3fr) 
       [sb-name-end sb-score-start] max-content
       [sb-content-end] minmax(1rem, 1fr) [sb-end];
-    grid-row-gap: .5rem;
+  grid-row-gap: .5rem;
   grid-column-gap: .5rem;
   padding-top: 1rem;
   width: 100%;
   height: 100%;
+  z-index: $z-index-SB;
 
+  // DEBUG
   // & > * {
-  //   border: 1px solid black;
+  //   border: 1px solid gray;
   // }
 
   &--home {
     grid-row: 1 / sb-end;
     grid-column: sb-home-start / sb-home-end;
-    background: linear-gradient(-5deg,  
+    background: linear-gradient(0deg,  
         $color-home-dark 0%, 
-        $color-home-dark 33%, 
-        $color-home-light 70%);
-    // TODO USE WHEN HOME SELECTED    
-    // background: linear-gradient(-5deg,  
-    //     $color-home-dark 0%, 
-    //     $color-home-light 30%,
-    //     $color-home-dark 100%);
-  }
+        // $color-home-med 5%, 
+        $color-home-dark 20%, 
+        $color-home-light 80%);
+      border-top-right-radius: 10px;
+      }
 
   &--guest {
     grid-row: 1 / sb-end;
     grid-column: sb-guest-start / sb-guest-end;
     background: linear-gradient(0deg,  
-        $color-guest-dark 10%, 
-        $color-guest-light 33%,
-        $color-guest-dark 100%);
-    // TODO USE WHEN GUEST NOT SELECTED    
-    // background: linear-gradient(to bottom,  
-    //     $color-guest-light 0%, 
-    //     $color-guest-light 25%, 
-    //     $color-guest-dark 70%);
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+        $color-guest-dark 0%, 
+        // $color-guest-med 5%,
+        $color-guest-dark 20%,
+        $color-guest-light 80%);
+    border-top-left-radius: 10px;
   }
+
+  [type=radio] {
+    display: none;
+    // DEBUG
+    // &:checked ~ label {
+    //   background: rgba(white, .3);
+    // }
+
+
+  }
+
+
+  &__tab {
+
+    & > label {
+      grid-row: 1 / span 2;
+      grid-column: 1 / -1;
+      cursor: pointer;
+      z-index: $z-index-SB;    
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+
+  }
+
+
 
   &__under-menu {
     grid-row: 1 / span 2;
@@ -133,6 +153,37 @@
     }
   }
 
+  &__to-tech {
+    grid-row: sb-end / sk-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-bottom: .5rem;
+
+    &--guest {
+      grid-column: sb-guest-start / sb-guest-end;
+      background: linear-gradient(0deg,  
+        $color-guest-med 0%, 
+        $color-guest-med 50%,
+        $color-guest-dark 100%);
+      padding-left: 1.5rem;
+
+    }
+
+    &--home {
+      grid-column: sb-home-start / sb-home-end;
+      background: linear-gradient(0deg,  
+        $color-home-med 0%, 
+        $color-home-med 50%,
+        $color-home-dark 100%);
+      padding-left: 5rem;
+
+    }
+
+  }
+
   &__to {
     grid-row: row-to-starts / span 1;
     grid-column: sb-content-start / sb-fouls-end;
@@ -146,7 +197,7 @@
     &-label {
       font-weight: 600;
       font-size: $font-label-size;
-      margin-right: 1.3rem;
+      margin-right: .5rem;
     }
 
   }
@@ -159,6 +210,7 @@
     flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: baseline;
+    margin-right: 4rem;
  
     &-label {
       font-weight: 600;
@@ -176,3 +228,5 @@
 
 
 }
+
+
