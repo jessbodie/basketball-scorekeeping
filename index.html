@@ -40,34 +40,44 @@
     </header>
 
 
-
-
-    <div class="sb sb--home">
+    <div class="sb sb--home sb__tab">
+      <input type="radio" class="" id="sb__tab--home" name="sb__tabs">
+      <label for="sb__tab--home" class="">&nbsp;</label>
       <div class="sb__under-menu"></div>
       <div class="sb__team"> 
         <div class="sb__team-label">Home</div>
         <div class="sb__team-name" id="team-name--home"></div>
       </div>
-      <div class="sb__score">64</div>
+      <div class="sb__score" id="sb__score--home"></div>
       <div class="sb__fouls">
         <div class="sb__fouls-label">Fouls</div>
-        <div class="sb__fouls-num" id="">6</div>
-        <div class="sb__fouls-bb">BB</div>
+        <div class="sb__fouls-num" id="sb__fouls--home"></div>
+        <div class="sb__fouls-bb"></div>
       </div>
-
-      <div class="period">
-          <div class="period__num period__num--1">Q1</div>
-          <div class="period__num period__num--2 period__num--active">Q2</div>
-          <div class="period__num period__num--3">Q3</div>
-          <div class="period__num period__num--4">Q4</div>
-          <div class="period__num period__num--5">OT1</div>
-          <div class="period__num period__num--6">OT2</div>
-          <div class="period__num period__num--7">Final</div>
-        </div>
-    
     </div>
 
-    <div class="sb sb--guest">
+    <div class="sb__to-tech sb__to-tech--home" id="sb__to-tech--home">
+        <div class="sb__to">
+            <form action="">
+                <label for="" class="sb__to-label">T.O.</label>
+                <input type="number" id="-home-to-in" name ="" value="" class="field-edit field-edit--single">
+                <input type="button" id="-home-to-btn" name ="" value="+" class="btn-edit"/>
+              </form>
+          </div>
+          <div class="sb__tech">
+              <form action="">
+                  <label for="" class="sb__to-label">Tech</label>
+                  <input type="number" id="-home-tech-in" name ="" value="" class="field-edit field-edit--single">
+                  <input type="button" id="-home-tech-btn" name ="" value="+" class="btn-edit"/>
+              </form>
+          </div>
+    </div>
+
+
+
+    <div class="sb sb__tab sb--guest">
+      <input type="radio" class="" id="sb__tab--guest" name="sb__tabs" checked>
+      <label for="sb__tab--guest" class="">&nbsp;</label>
       <div class="sb__team">
         <div class="sb__team-label">Guest</div>
         <div class="sb__team-name" id="team-name--guest"></div>
@@ -78,30 +88,39 @@
         <div class="sb__fouls-num" id="sb__fouls--guest"></div>
         <div class="sb__fouls-bb"></div>
       </div>
-      <div class="sb__to">
-        <form action="">
-            <label for="" class="sb__to-label">T.O.</label>
-            <input type="number" id="" name ="" value=" " class="field-edit field-edit--single">
-            <input type="button" id="to" name ="" value="+" class="btn-edit"/>
-          </form>
-      </div>
-      <div class="sb__tech">
-          <form action="">
-              <label for="" class="sb__to-label">Tech</label>
-              <input type="number" id="" name ="" value=" " class="field-edit field-edit--single">
-              <input type="button" id="tech" name ="" value="+" class="btn-edit"/>
-          </form>
- 
-      </div>
+    </div>
+    
+    <div class="sb__to-tech sb__to-tech--guest" id="sb__to-tech--guest">
+        <div class="sb__to">
+            <form action="">
+                <label for="" class="sb__to-label">T.O.</label>
+                <input type="number" id="-guest-to-in" name ="" value="" class="field-edit field-edit--single">
+                <input type="button" id="-guest-to-btn" name ="" value="+" class="btn-edit"/>
+              </form>
+          </div>
+          <div class="sb__tech">
+              <form action="">
+                  <label for="" class="sb__to-label">Tech</label>
+                  <input type="number" id="-guest-tech-in" name ="" value="" class="field-edit field-edit--single">
+                  <input type="button" id="-guest-tech-btn" name ="" value="+" class="btn-edit"/>
+              </form>
+          </div>
+    </div>
 
+    <div class="period" id="sb_period">
+        <div class="period__num period__num--1">Q1</div>
+        <div class="period__num period__num--2 period__num--active">Q2</div>
+        <div class="period__num period__num--3">Q3</div>
+        <div class="period__num period__num--4">Q4</div>
+        <div class="period__num period__num--5">OT1</div>
+        <div class="period__num period__num--6">OT2</div>
+        <div class="period__num period__num--7">Final</div>
     </div>
 
 
-    <div class="sk">
-      <!-- <table id="sk__table">
-        <thead></thead>
-        </table> -->
-      <table id="sk__table">
+
+    <div class="sk sk--guest" id="sk">
+      <table id="sk__table--home">
         <thead>
           <tr>
             <th class="sk__label sk__label--name">Player</th>
@@ -145,6 +164,23 @@
         </tbody>
       
       </table>
+
+      <table id="sk__table--guest">
+          <thead>
+            <tr>
+              <th class="sk__label sk__label--name">Player</th>
+              <th class="sk__label sk__label--number">#</th>
+              <th class="sk__label sk__label--edit">Field Goal</th>
+              <th class="sk__label sk__label--edit">3-Pointer</th>
+              <th class="sk__label sk__label--edit">Foul Shot</th>
+              <th class="sk__label sk__label--edit">Personal Foul</th>
+              </tr>
+          </thead>
+          <tbody><tr></tr>
+          </tbody>
+        
+        </table>
+  
     </div>
       
 

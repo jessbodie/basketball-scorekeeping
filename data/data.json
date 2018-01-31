@@ -82,13 +82,6 @@
                             "teamID": "", 
                             "playerID": "", 
                             "type": ""
-                        },
-                        {
-                            "id": 2,
-                            "period": "1st", 
-                            "teamID": "OLA-001", 
-                            "playerID": "001", 
-                            "type": "foulShot"
                         }
                     ] 
                 }

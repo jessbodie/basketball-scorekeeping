@@ -1,9 +1,61 @@
 .sk {
-  background-color: $color-guest-light;
   grid-column: left-start / right-end;
   grid-row-start: sk-start / -1;
   width: 100%;
   height: 100%;
+
+  &--home {
+    background-color: $color-home-light;
+    thead tr {
+      background: linear-gradient(0deg,  
+          rgba($color-home-dark, .7) 0%, 
+          $color-home-dark 30%,
+          rgba($color-home-med, .7) 100%);
+    }
+  
+    // Darker
+    tbody tr:nth-child(odd) {
+      background: linear-gradient(0deg,  
+          rgba($color-home-dark, .8) 0%, 
+          rgba($color-home-dark, 1) 40%,
+          rgba($color-home-med, .6) 100%); 
+    }
+    
+    // Lighter
+    tbody tr:nth-child(even) {
+      background: linear-gradient(0deg,  
+          rgba($color-home-dark, .5) 0%, 
+          rgba($color-home-med, .1) 50%,
+          rgba($color-home-light, .6) 100%); 
+    }
+  }
+
+  &--guest {
+    background-color: $color-guest-light;
+    thead tr {
+      background: linear-gradient(0deg,  
+        rgba($color-guest-dark, .7) 0%, 
+        $color-guest-dark 30%,
+        rgba($color-guest-med, .7) 100%);
+    }
+  
+    // Darker
+    tbody tr:nth-child(odd) {
+      background: linear-gradient(0deg,  
+      rgba($color-guest-dark, .8) 0%, 
+      rgba($color-guest-dark, 1) 40%,
+      rgba($color-guest-med, .6) 100%); 
+    }
+
+    // Lighter
+    tbody tr:nth-child(even) {
+      background: linear-gradient(0deg,  
+      rgba($color-guest-dark, .5) 0%, 
+      rgba($color-guest-med, .1) 50%,
+      rgba($color-guest-light, .6) 100%); 
+    }
+  }
+
 
   table {
     vertical-align: middle;
@@ -13,30 +65,7 @@
     width: 100%;
   }
 
-  thead tr {
-    background: linear-gradient(0deg,  
-        rgba($color-guest-dark, .5) 0%, 
-        $color-guest-dark 30%,
-        $color-guest-dark 100%);
-  }
-
-  tbody tr:nth-child(odd) {
-    background: linear-gradient(0deg,  
-        rgba($color-guest-dark, .5) 0%, 
-        // $color-guest-dark 50%,
-        $color-guest-dark 15%,
-        $color-guest-dark 75%,
-        rgba($color-guest-dark, .5) 100%); 
-  }
-
-  tbody tr:nth-child(even) {
-    background: linear-gradient(0deg,  
-        rgba($color-guest-light, 1) 0%, 
-        rgba($color-guest-dark, .15) 50%,
-        rgba($color-guest-light, 1) 100%); 
-  }
-
-  td, th {
+td, th {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -45,7 +74,7 @@
   }
 
   th {
-    padding-top: .5rem;
+    padding-top: .8rem;
     padding-bottom: .5rem;
   }
 
@@ -91,6 +120,3 @@
   }
 }
 
-// td.sk__player--name {
-//   text-align: left;
-// }
