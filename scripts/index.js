@@ -8,8 +8,8 @@ var dataController = (function() {
     var summary = {
         game: 
             {
-            gameID: "",
-            period: "",
+            gameID: "TODOLATER",
+            period: "Q1",
             homeSummary: {
                 score: 0,
                 fouls: 0,
@@ -33,7 +33,8 @@ var dataController = (function() {
                 period: "",
                 teamID: "",
                 playerID: "",
-                activityType: ""
+                activityType: "",
+                overwrite: ""
             },
         ]
     }
@@ -82,18 +83,18 @@ var dataController = (function() {
             return dataJSON;
         },
 
+        getSummary: function() {
+            console.log(summary);
+            return summary;
+        },
+
         // 
         getActiveTeam: function(team) {
             activeTeam = team;
             return activeTeam;
         },
 
-        // DELETE?
-        // getHomeTeamID: function() {
-        //     return homeTeam;
-        // },
-
-        
+       
         // Return the activityLookUp
         getActivityLookUp: function() {
             console.log(activityLookUp);
@@ -116,26 +117,35 @@ var dataController = (function() {
         
         // Add each new activity to activity object
         // Take ID from button, convert to array and then object
-        saveActivity: function(newActiv) {
+        saveActivity: function(newActiv, val) {
             var activCurrLength = activity.activities.length;
             var newActivityObj = {
                 id:((activity.activities[activCurrLength - 1].id) + 1),
-                period: "TODOLATER",
+                period: summary.game.period,
                 teamID: newActiv[0],
                 playerID: newActiv[1],
-                activityType: newActiv[2]
+                activityType: newActiv[2],
+                overwrite: val
             };
             activity.activities.push(newActivityObj);
+            console.log(newActivityObj);
 
             return activity.activities;
         },
 
         // Depending on activity type and team, 
+        // update data summary object and
         // return new corresponding summary amount and element
-        updateSummary: function(team, type) {
+        updateSummary: function(team, type, changeVal) {
             for (let t of activityLookUp) {
                 if (type === t[0]) {
-                    let amt = (t[1].increment);
+                    // Check if overwrite (from text input field), use change in value
+                    if (isNaN(changeVal)) {
+                        var amt = (t[1].increment);
+                    } else {
+                        var amt = changeVal;
+                    }
+
                     var sumField = (t[1].summaryField);
                     var sumDOM = (t[1].summaryDOMid);
                     var sumTot;
@@ -156,8 +166,12 @@ var dataController = (function() {
             return [sumTot, sumDOM];
         },
 
+        updatePeriod: function(per) {
+            summary.game.period = per;
+        },
 
-        // Depending on activity type, return new corresponding amount to display in player field
+        // Depending on activity type, 
+        // return new corresponding amount to display in player field
         updatePlayerActivity: function(type, el) {
             var curAmt = dataController.getFieldNum(el);
             for (let t of activityLookUp) {
@@ -202,7 +216,7 @@ var UIController = (function() {
             // HOME - Display the row in the table, with IDs for elements
             var table=document.getElementById("sk__table--"+teamToggle);
             var table_len=(table.rows.length);
-            var row = table.insertRow(table_len).outerHTML="<tr class='sk__player' id='"+id+"'><td class='sk__player--name' id='name-"+id+"'></td><td class='sk__player--number' id='num-"+id+"'></td><td class='sk__player--edit'><form action=''><input type='number' id='"+id+"-fg-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fg-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form action=''><input type='number' id='"+id+"-3p-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-3p-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form action=''><input type='number' id='"+id+"-fs-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fs-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form action=''><input type='number' id='"+id+"-pf-in' name ='' value=' ' class='field-edit'><input type='button' id='"+id+"-pf-btn' name ='' value='+' class='btn-edit'/></form></td></tr>";
+            var row = table.insertRow(table_len).outerHTML="<tr class='sk__player' id='"+id+"'><td class='sk__player--name' id='name-"+id+"'></td><td class='sk__player--number' id='num-"+id+"'></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fg-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fg-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-3p-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-3p-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fs-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fs-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-pf-in' name ='' value=' ' class='field-edit'><input type='button' id='"+id+"-pf-btn' name ='' value='+' class='btn-edit'/></form></td></tr>";
             // Display player name and number
             document.getElementById("name-"+id).textContent = displayName;
             document.getElementById("num-"+id).textContent = num;
@@ -224,10 +238,10 @@ var UIController = (function() {
 
             } else if (tab === "guest") {
                 document.getElementById("sb_period").style.gridColumn = "sb-home-start / sb-home-end";
-                document.getElementById("sb_period").style.backgroundColor = "#77828C";
+                document.getElementById("sb_period").style.backgroundColor = "#889fb3";
                 document.getElementById("sb__to-tech--guest").style.visibility = "visible";
                 document.getElementById("sb__to-tech--home").style.visibility = "hidden";
-                document.querySelector(".container").style.backgroundColor = "#C6D1DB";
+                document.querySelector(".container").style.backgroundColor = "#dbe2e8";
                 document.getElementById("sk").classList.add("sk--guest");
                 document.getElementById("sk").classList.remove("sk--home");
                 document.getElementById("sk__table--guest").style.display = "block";
@@ -286,41 +300,86 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
 
-        // When tab is clicked, update flag and UI
+        // When Home or Guest tab is clicked, update flag and UI
         document.getElementById("sb__tab--home").addEventListener("click", function() {
             toggleHomeGuest("home");
         });
         document.getElementById("sb__tab--guest").addEventListener("click", function() {
             toggleHomeGuest("guest");
         });
+
+        // When Period clicked, add Period to Activity object and update UI
+        periodsList = document.querySelectorAll(".period__num");
+        for (let i = 0; i < periodsList.length; i++) {
+
+            periodsList[i].children[1].addEventListener("click", function(e) {
+                dataCtrl.updatePeriod(e.currentTarget.textContent);
+            });
+        };
+
     }    
         
     // Listen for button clicks in Score Keeping and send the input for processing
+    // Called after JSON loaded
     function SKEventListeners() {
+        // Listen for Plus Button clicks, then process that Input
         var btnList = document.querySelectorAll(".btn-edit");
         for (let i = 0; i < btnList.length; i++) {
-            // console.log(btnList[i]);
             btnList[i].addEventListener("click", function() {
-                console.log(btnList[i].id);
                 process(btnList[i].id);
             });
         }
+
+        // Listen for Edit Field updates, then process that Input
+        var editFieldList = document.querySelectorAll(".field-edit");
+        for (let i = 0; i < editFieldList.length; i++) {
+            var prevValue;
+
+            editFieldList[i].addEventListener("click", function() {
+                // Select and focus where user taps
+                editFieldList[i].select();
+                editFieldList[i].focus();
+                // Capture current value
+                prevValue = editFieldList[i].value;
+
+            });
+
+            // Process after field is blurred
+            editFieldList[i].addEventListener("blur", function() {
+                process(editFieldList[i].id, editFieldList[i].value, prevValue);
+            });
+
+            // Process after press Enter key
+            editFieldList[i].addEventListener("keypress", function(e) {
+                if ((e.keyCode === 13) || (e.keyCode === 9)) {
+                    e.preventDefault();
+                    process(editFieldList[i].id, editFieldList[i].value, prevValue);
+                    prevValue = editFieldList[i].value;
+                    editFieldList[i].blur();
+                }
+            });
+
+        }
+
     }
 
-    // 
-    function process(input) {
+    // Core function to process the inputs from buttons and text fields
+    // overWriteValue and prevValue neeced for text input fields only
+    function process(input, overWriteValue, prevValue) {
         // Change input activity to an array
         var newActivityArr = input.split("-");
-        console.log(newActivityArr);
-        // 1 - Save each activity
-        var allActivities = dataCtrl.saveActivity(newActivityArr);
+        // console.log(newActivityArr);
+                
+        // 1 - Save each individual activity
+        var allActivities = dataCtrl.saveActivity(newActivityArr, overWriteValue);
         // console.log(allActivities);
         var activityType = newActivityArr[2];
         var playerID = newActivityArr[1];
         var team = newActivityArr[0];
+        var changeInValue = overWriteValue - prevValue;
 
-        // 2 - For each activity, increment Score Board Summary data and UI
-        var activityOutput = dataCtrl.updateSummary(team, activityType); 
+        // 2 - For each activity, update Score Board Summary data and Score Board UI
+        var activityOutput = dataCtrl.updateSummary(team, activityType, changeInValue); 
         var amtSB = activityOutput[0];
         var elSB = activityOutput[1];
         if ((activityType == "fg") || (activityType == "3p") ||
@@ -329,12 +388,14 @@ var controller = (function(UICtrl, dataCtrl) {
         };
 
 
-        // 3 - For each activity, update corresponding player's edit field
-        // Get current value of field and replace with updated value
-        var elPlayerActivity = input.replace("btn", "in");
-        var amtPlayerActivity = dataCtrl.updatePlayerActivity(activityType, elPlayerActivity); 
-        amtPlayerActivity = parseInt(amtPlayerActivity, 10);
-        UICtrl.showFieldText(elPlayerActivity, amtPlayerActivity);
+        // 3 - If button clicked and not overwrite from text input,
+        // for each activity, update corresponding player's edit field
+        if (overWriteValue === undefined) {
+            var elPlayerActivity = input.replace("btn", "in");
+            var amtPlayerActivity = dataCtrl.updatePlayerActivity(activityType, elPlayerActivity); 
+            amtPlayerActivity = parseInt(amtPlayerActivity, 10);
+            UICtrl.showFieldText(elPlayerActivity, amtPlayerActivity);
+        }
     }
     
 
@@ -361,8 +422,6 @@ var controller = (function(UICtrl, dataCtrl) {
             // console.log(allJSONData);
             showBasicData(allJSONData);
 
-            // Update Scoreboard with team IDs
-            // dataCtrl.updateSBTeamIDs(allJSONData);
 
             return allJSONData;
         }    
