@@ -22,8 +22,8 @@ body {
       [sb-end] auto 
       [sk-start] 1fr [sk-end];
   grid-template-columns: 
-      [left-start sb-home-start] minmax(18rem, 6fr)
-      [sb-home-end sb-guest-start] minmax(12rem, 6fr) 
+      [left-start sb-home-start] minmax(18rem, 8fr)
+      [sb-home-end sb-guest-start] minmax(12rem, 7fr) 
       [sb-guest-end right-end];
   // padding: 3rem 0 0 3rem; // DEBUG
   width: 100%;
@@ -61,10 +61,10 @@ body {
   &:focus,
   &:active {
     background: radial-gradient(circle at bottom right,  
-      $color-home-light 0%, 
-      $color-home-dark 70%, 
-      $color-gray-dark 100%);
-    color: $color-white;
+      $color-white 0%, 
+      $color-home-light 70%, 
+      $color-home-dark 100%);
+    color: $color-black;
     outline: none;
     @include dropshadow-darker;
   }

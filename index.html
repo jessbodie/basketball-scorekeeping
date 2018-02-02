@@ -8,14 +8,23 @@
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
      <meta name="description" content="Basketball Scorekeeping for Youth Leagues">
      <meta name="robots" content="index, follow">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.8, maximum-scale=1.2">
 
      <noscript>Please enable JavaScript!</noscript>
 
      <!--Begin Favicon, thanks to https://realfavicongenerator.net -->
-     <!-- TODO -->
+     <!--Begin Favicon, thanks to https://realfavicongenerator.net -->
+     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+     <link rel="manifest" href="img/favicon/site.webmanifest">
+     <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+     <link rel="shortcut icon" href="img/favicon/favicon.ico">
+     <meta name="msapplication-TileColor" content="#da532c">
+     <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
+     <meta name="theme-color" content="#cdbeb1">
 
-     <title>Basketball Scorekeeping</title>
+     <title>Basketball Scorekeeping - Scorekeeping</title>
 
 </head>
 
@@ -31,10 +40,10 @@
 
       <nav id="main-menu" class="nav__expanded">
         <ul>
-          <li><a href="#">Schedule</a></li>
-          <li><a href="#">Roster</a></li>
-          <li><a href="#">Logout</a></li>
-          <li><a href="#">About</a></li>
+          <li class="nav__expanded--ready"><a href="about.html">About</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Schedule</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Roster</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Logout</a></li>
         </ul>
       </nav>
     </header>
@@ -107,19 +116,41 @@
           </div>
     </div>
 
+
     <div class="period" id="sb_period">
-        <div class="period__num period__num--1">Q1</div>
-        <div class="period__num period__num--2 period__num--active">Q2</div>
-        <div class="period__num period__num--3">Q3</div>
-        <div class="period__num period__num--4">Q4</div>
-        <div class="period__num period__num--5">OT1</div>
-        <div class="period__num period__num--6">OT2</div>
-        <div class="period__num period__num--7">Final</div>
+      <form name="periodsList">
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--1" />
+          <label for="period__num--1">Q1</label>
+        </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--2" />
+          <label for="period__num--2">Q2</label>
+        </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--3" />
+          <label for="period__num--3">Q3</label>
+        </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--4" />
+          <label for="period__num--4">Q4</label>
+          </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--OT1" />
+          <label for="period__num--OT1">OT1</label>
+          </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--OT2" />
+          <label for="period__num--OT2">OT2</label>
+        </div>
+        <div class="period__num">
+          <input type="radio" name="periodsList" id="period__num--FIN" />
+          <label for="period__num--FIN">Final</label>
+        </div>
+      </form>
     </div>
 
-
-
-    <div class="sk sk--guest" id="sk">
+    <div class="sk" id="sk">
       <table id="sk__table--home">
         <thead>
           <tr>
