@@ -115,12 +115,18 @@ td, th {
 
     &--animate {
       opacity: 0;
-      animation-name: moveFromTop;
-      animation-duration: 300ms;
+      animation-name: moveFromLeft;
+      animation-duration: 400ms;
       animation-iteration-count: 1;
-      animation-delay: 1s;
-      animation-timing-function: ease-in;
+      animation-timing-function: ease-in-out;
       animation-fill-mode: forwards;
+
+      @for $i from 0 through 100 { // TODO - CALCULATE BASED ON NUM ROWS
+        &:nth-child(#{$i}) {
+            animation-delay:(#{0ms + ($i * 300ms)});
+          }
+        }
+
     }
   
 
