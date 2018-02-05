@@ -216,7 +216,7 @@ var UIController = (function() {
             // HOME - Display the row in the table, with IDs for elements
             var table=document.getElementById("sk__table--"+teamToggle);
             var table_len=(table.rows.length);
-            var row = table.insertRow(table_len).outerHTML="<tr class='sk__player' id='"+id+"'><td class='sk__player--name' id='name-"+id+"'></td><td class='sk__player--number' id='num-"+id+"'></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fg-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fg-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-3p-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-3p-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fs-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fs-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-pf-in' name ='' value=' ' class='field-edit'><input type='button' id='"+id+"-pf-btn' name ='' value='+' class='btn-edit'/></form></td></tr>";
+            var row = table.insertRow(table_len).outerHTML="<tr class='sk__player sk__player--animate' id='"+id+"'><td class='sk__player--name' id='name-"+id+"'></td><td class='sk__player--number' id='num-"+id+"'></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fg-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fg-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-3p-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-3p-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-fs-in' name ='' value='' class='field-edit'><input type='button' id='"+id+"-fs-btn' name ='' value='+' class='btn-edit'/></form></td><td class='sk__player--edit'><form ><input type='number' id='"+id+"-pf-in' name ='' value=' ' class='field-edit'><input type='button' id='"+id+"-pf-btn' name ='' value='+' class='btn-edit'/></form></td></tr>";
             // Display player name and number
             document.getElementById("name-"+id).textContent = displayName;
             document.getElementById("num-"+id).textContent = num;
@@ -246,6 +246,14 @@ var UIController = (function() {
                 document.getElementById("sk").classList.remove("sk--home");
                 document.getElementById("sk__table--guest").style.display = "block";
                 document.getElementById("sk__table--home").style.display = "none";
+            }
+        },
+
+        // Remove animation of Scokre Keeping rows 
+        removeSKAnimation: function() {
+            var allPlayerRows = document.querySelectorAll(".sk__player");
+            for (i = 0; i < allPlayerRows.length; i++) {
+                allPlayerRows[i].classList.remove("sk__player--animate");
             }
         }
     
@@ -360,6 +368,9 @@ var controller = (function(UICtrl, dataCtrl) {
             });
 
         }
+
+        // Remove animation after it loads once for Home and Guest Tabs
+        document.getElementById("sb__tab--home").addEventListener("click", UICtrl.removeSKAnimation);
 
     }
 
