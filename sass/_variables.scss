@@ -25,11 +25,16 @@ $color-black: #222222;
 $color-gray-dark: #444F5A;
 
 // Z-INDEX
+$z-index-bottom: 0;
 $z-index-SB: 50;
 $z-index-periods: 80;
 $z-index-menu: 100;
 $z-index-menu-btn: 150;
-$z-index-bottom: 0;
+$z-index-splash: 300;
+
+// SPLASH ANIMATION TIMES
+$splash-time-basketball: 3.5s;
+$splash-time-title: 5s;
 
 
 // BREAKPOINTS

@@ -14,30 +14,9 @@ html {
 body {
   font-family: $font-primary;
   font-size: $font-default-size;
+  background-color: $color-home-light;
 }
 
-.container {
-  display: grid;
-  grid-template-rows: auto
-      [sb-end] auto 
-      [sk-start] 1fr [sk-end];
-  grid-template-columns: 
-      [left-start sb-home-start] minmax(18rem, 8fr)
-      [sb-home-end sb-guest-start] minmax(12rem, 7fr) 
-      [sb-guest-end right-end];
-  // padding: 3rem 0 0 3rem; // DEBUG
-  width: 100%;
-  min-height: 100vh;
-  min-width: 60rem;
-  // background-color: $color-guest-light;
-  // background-color: $color-home-light;
-
-  //   DEBUG
-  //   & > * {
-  //   border: 1px solid black;
-  // }
-
-}
 
 
 .btn-edit {
