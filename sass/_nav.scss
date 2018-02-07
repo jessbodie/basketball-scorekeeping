@@ -1,11 +1,10 @@
 .nav {
-  grid-row: 1 / sb-end;
-  grid-column: left-start / right-end;
-  // z-index: 1;
-   
-
-
+  content: "";
+  
   position: relative;
+  top: 0;
+  left: 0;
+  z-index: $z-index-menu-btn;
 
   &__checkbox {
     display: none;
@@ -19,7 +18,6 @@
     top: .8rem;
     left: 1rem;
     cursor: pointer;
-    z-index: $z-index-menu-btn;
 
   
     width: 3rem;

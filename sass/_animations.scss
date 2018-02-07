@@ -1,31 +1,127 @@
-@keyframes moveFromLeft {
-  0% {
-      opacity: 0;
-      transform: translateX(-15rem);
- }
 
- 100% {
-      opacity: 1;
-      transform: translateX(0);
- }
+@keyframes xBasketball {
+  0% {
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(0) translate(0, 0);
+    }
+
+  30% {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(10) translate(-30%, 75%);
+  }
+
+  60% {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(20) translate(-50%, -45%);
+      }
+
+  80% {
+    opacity: 1;
+    transform: scale(50) translate(0, 0);
+    }
+
+  100% {
+    opacity: 0;
+    transform: scale(50) translate(0, 0);
+    background: radial-gradient(circle at top left, $color-black 0,
+    $color-black 100%);
+    }
+  
+  }
+
+@keyframes yBasketball {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0) translate(0, 0);
+  }
+
+  30% {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(10) translate(-30%, 75%);
+  }
+
+  60% {
+    transform: scale(20) translate(-50%, -45%);
+    }
+
+  80% {
+    opacity: 1;
+    transform: scale(50) translate(0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(50) translate(0, 0);
+    background: radial-gradient(circle at top left, $color-black 0,
+      $color-black 100%);
+  }
+
 }
 
 
-@mixin animation-fadeIn {
+@keyframes titleAnim {
+  0% {
+     opacity: 0;
+     transform: scale(20) translateY(-4rem);
+    }
+
+  40% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  100% {
     opacity: 0;
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
-    animation-fill-mode: forwards;
+    transform: scale(.1) translateY(150vh);
   }
-  
-  @keyframes fadeIn {
-       0% {
-          opacity: 0;
-       }
-  
-       100% {
-         opacity: 1;
-       }
+}
+
+
+@keyframes subTitleAnim {
+  0% {
+     opacity: 0;
+     transform: scale(.2) translateY(10rem) rotate(0);
+    }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-2rem) rotate(-20deg);
   }
-  
+
+  40% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(-2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(-5deg);
+  }
+
+}
+
+
+
+@keyframes headerAnim {
+  0% {
+    width:100%;
+    height: 100%;
+  }
+
+  100% {
+    width: 5rem;
+    height: 5rem;
+  }
+
+}
+

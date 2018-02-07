@@ -121,9 +121,9 @@ td, th {
       animation-timing-function: ease-in-out;
       animation-fill-mode: forwards;
 
-      @for $i from 0 through 100 { // TODO - CALCULATE BASED ON NUM ROWS
+      @for $i from 0 through 20 { // TODO - CALCULATE SEQUENTIAL DELAY BASED ON NUM ROWS
         &:nth-child(#{$i}) {
-            animation-delay:(#{0ms + ($i * 300ms)});
+            animation-delay:(#{$splash-time-basketball + ($i * 300ms)});
           }
         }
 
