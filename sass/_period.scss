@@ -1,6 +1,10 @@
 .period {
   grid-row: sb-end / sk-start;
   // grid-column: sb-home-start / sb-home-end;
+  display: block;
+  vertical-align: bottom;
+  line-height: 0;
+  box-shadow: 0 .4rem .4rem rgba($color-gray-dark, .4);
 
   z-index: $z-index-periods;
 
@@ -27,8 +31,9 @@
       $color-secondary-dark, 
       $color-secondary-light);
     border: none;
+    box-shadow: .4rem .2rem 1.2rem rgba($color-black, .6);
+
     
-    @include dropshadow-darker;
 
     &:hover,
     &:focus,

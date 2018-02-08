@@ -33,8 +33,10 @@ $z-index-menu-btn: 150;
 $z-index-splash: 300;
 
 // SPLASH ANIMATION TIMES
-$splash-time-basketball: 3.5s;
+$splash-time-basketball: 3s;
 $splash-time-title: 5s;
 
 
 // BREAKPOINTS
+$app-min-width: 560px;
+$app-max-width: 1200px;

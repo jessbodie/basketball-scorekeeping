@@ -30,37 +30,42 @@
 
 <body>
 
-<div class="index">
-    <header>
 
-        <div class="nav">
-            <input type="checkbox" class="nav__checkbox" id="nav-toggle">
-            <label for="nav-toggle" class="nav__btn">
-              <span class="nav__btn-elements"></span>
-            </label>
+  <div class="index">
+
+
+    <!-- Nav -->
+    <div class="nav">
+      <input type="checkbox" class="nav__checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="nav__btn">
+        <span class="nav__btn-elements"></span>
+      </label>
   
-          <nav id="main-menu" class="nav__expanded">
-            <ul>
-              <li class="nav__expanded--ready"><a href="about.html">About</a></li>
-              <li class="nav__expanded--disabled"><a href="#">Schedule</a></li>
-              <li class="nav__expanded--disabled"><a href="#">Roster</a></li>
-              <li class="nav__expanded--disabled"><a href="#">Logout</a></li>
-            </ul>
-          </nav>
-        </div> 
+      <nav id="main-menu" class="nav__expanded">
+        <ul>
+          <li class="nav__expanded--ready"><a href="about.html">About</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Schedule</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Roster</a></li>
+          <li class="nav__expanded--disabled"><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </div> 
   
-      <div class="splash">
-          <!-- Splash animation: Basketball -->
-          <div class="splash__ball">
-              <!-- Icon made by https://www.flaticon.com/authors/freepik from www.flaticon.com  -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 297" width="512" height="512">
-                  <path d="M148.5 0C66.6 0 0 66.6 0 148.5S66.6 297 148.5 297 297 230.4 297 148.5 230.4 0 148.5 0zM276.3 138.4h-74.9c2.5-30.4 15.9-59 37.8-80.3C260.2 79 273.9 107.1 276.3 138.4zM158.6 138.4V20.7c24.3 1.9 46.8 10.7 65.4 24.3 -25 25-40.2 58.1-42.6 93.4H158.6zM138.4 138.4h-22.8c-2.4-35.2-17.6-68.4-42.6-93.4 18.6-13.7 41.1-22.4 65.4-24.3V138.4zM138.4 158.6v117.7c-24.3-1.9-46.8-10.7-65.4-24.3 25-25 40.2-58.1 42.6-93.4H138.4zM158.6 158.6h22.8c2.4 35.2 17.6 68.4 42.6 93.4 -18.6 13.7-41.1 22.4-65.4 24.3V158.6zM57.7 58c22 21.4 35.4 49.9 37.8 80.3h-74.9C23.1 107.1 36.8 79 57.7 58zM20.7 158.6h74.9c-2.5 30.4-15.9 59-37.8 80.3C36.8 218 23.1 189.9 20.7 158.6zM239.3 239c-22-21.4-35.4-49.9-37.8-80.3h74.9C273.9 189.9 260.2 218 239.3 239z" fill="#222222"/>
-              </svg>
-          </div>
+
+
+    <header id="splash__anim">
+
+      <!-- Splash animation: Basketball -->
+      <div class="splash__ball" id="splash__ball">
+          <!-- Icon made by https://www.flaticon.com/authors/freepik from www.flaticon.com  -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 297" width="512" height="512">
+              <path d="M148.5 0C66.6 0 0 66.6 0 148.5S66.6 297 148.5 297 297 230.4 297 148.5 230.4 0 148.5 0zM276.3 138.4h-74.9c2.5-30.4 15.9-59 37.8-80.3C260.2 79 273.9 107.1 276.3 138.4zM158.6 138.4V20.7c24.3 1.9 46.8 10.7 65.4 24.3 -25 25-40.2 58.1-42.6 93.4H158.6zM138.4 138.4h-22.8c-2.4-35.2-17.6-68.4-42.6-93.4 18.6-13.7 41.1-22.4 65.4-24.3V138.4zM138.4 158.6v117.7c-24.3-1.9-46.8-10.7-65.4-24.3 25-25 40.2-58.1 42.6-93.4H138.4zM158.6 158.6h22.8c2.4 35.2 17.6 68.4 42.6 93.4 -18.6 13.7-41.1 22.4-65.4 24.3V158.6zM57.7 58c22 21.4 35.4 49.9 37.8 80.3h-74.9C23.1 107.1 36.8 79 57.7 58zM20.7 158.6h74.9c-2.5 30.4-15.9 59-37.8 80.3C36.8 218 23.1 189.9 20.7 158.6zM239.3 239c-22-21.4-35.4-49.9-37.8-80.3h74.9C273.9 189.9 260.2 218 239.3 239z" fill="#222222"/>
+          </svg>
       </div>
     
 
-      <div class="splash__title splash__title--anim">
+      <!-- Splash animation: Title -->
+      <div class="splash__title splash__title--anim" id="splash__title">
           <h1>Basketball Scorekeeping</h1>
           <div class="splash__subtitle splash__subtitle--anim">
               <h2>Alpha</h2>
@@ -68,8 +73,7 @@
       </div>
 
 
-    </header>
-
+      </header>
     
     <div class="container">
 
@@ -241,7 +245,6 @@
       
 
   </div>
-</div>
   <script src="scripts/index.js"></script>
 </body>
 </html>

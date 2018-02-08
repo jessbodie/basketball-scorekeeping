@@ -4,19 +4,22 @@
         [index-top] 1fr [index-bottom];
     grid-template-columns: 
         [index-left-start] 1fr [index-right-end];
-    min-height: 100vh;
+    // min-height: 100vh;
     opacity: .99;
     z-index: $z-index-bottom;
+
 
     header {
         grid-row: 1 / -1;
         grid-column: 1 / -1;
         opacity: 0.99;
         position: relative;
-        z-index: $z-index-menu;
+        z-index: $z-index-menu-btn;
+        // border: 1px solid blue;
 
         animation: headerAnim 100ms forwards;
-        animation-delay: calc(#{$splash-time-basketball} + #{$splash-time-title});
+        animation-delay: calc(#{$splash-time-basketball} + 
+            #{$splash-time-title});
     }
 }
 
@@ -33,17 +36,17 @@
         [sb-guest-end right-end];
     // padding: 3rem 0 0 3rem; // DEBUG
     width: 100%;
-    min-width: 60rem;
-    max-width: 110rem;
     margin: 0 auto;
     opacity: .99;
     z-index: $z-index-bottom;
   }
 
 
+  // SPLASH ANIMATION
   .splash {
  
     &__ball {
+        pointer-events: none;
       display: block;
       position: absolute;
       top: 0;
@@ -56,24 +59,27 @@
       border-radius: 50%;
       visibility: hidden;
       opacity: 0;
-      transform: scale(0) translate(0, 0);
- 
-      animation: xBasketball $splash-time-basketball ease-in forwards;
+    //   transform: scale(0) translate(0, 0);
+      transform-origin: top right;  
+      
+      animation: xBasketball $splash-time-basketball ease-in backwards;
  
        svg {
+        pointer-events: none;
         width: 100%;
         height: 100%;
        }
      }
   
-    &::after {
-      animation: yBasketball $splash-time-basketball ease-out forwards;
-    }
+    // Way to have a more roller-coaster-like timing
+    // Removed for performance 
+    // &::after {
+    //   animation: yBasketball $splash-time-basketball ease-out forwards;
+    // }
   
   
     &__title {
-        // display: none;
-        // opacity: 0;
+      pointer-events: none;
       position: relative;
       z-index: z-index-splash;
       opacity: 0;
@@ -87,18 +93,23 @@
       font-size: 2rem;
       max-width: 60%;
       @include dropshadow;
+
+      h1 {
+          display: inline;
+      }
   
       
       &--anim {
-        animation: titleAnim $splash-time-title ease-in-out backwards;
-        animation-delay: calc(#{$splash-time-basketball} - 1.2s);
+        animation: titleAnim $splash-time-title ease-in-out forwards;
+        animation-delay: calc(#{$splash-time-basketball - .9s});
       }
     }
 
     &__subtitle {
+        pointer-events: none;
         position: absolute;
         bottom: -.8rem;
-        right: -1.6rem;
+        right: -1rem;
         text-transform: uppercase;
         transform: rotate(-5deg);
         font-family: $font-primary;
@@ -107,12 +118,14 @@
         border-radius: 5px;
         color: $color-home-med;
         border: 2px solid $color-home-med;
+        opacity: 0;
         @include dropshadow;
 
         &--anim {
-            animation: subTitleAnim 500ms ease-in-out backwards;
-            animation-delay: calc(#{$splash-time-basketball} + 1s);
-          }
+            animation: subTitleAnim 1s ease-in-out forwards;
+            animation-delay: 4.5s;
+            // animation-delay: calc(#{$splash-time-title / 5});
+        }
         }
 
   }
