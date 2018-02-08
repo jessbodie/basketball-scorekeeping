@@ -3,6 +3,10 @@
   grid-row: sk-start / sk-end;
   width: 100%;
   height: 100%;
+// NEWLY ADDED
+  opacity: .99;
+  position: relative;
+  z-index: z-index-menu-btn; 
 
   &--home {
     background-color: $color-home-light;
@@ -15,7 +19,7 @@
   
     // Darker
     tbody tr:nth-child(odd) {
-      transition: all 1s ease-in 1s;
+      // transition: all 1s ease-in 1s;
       background: linear-gradient(0deg,  
           rgba($color-home-dark, .8) 0%, 
           rgba($color-home-dark, 1) 40%,
@@ -92,7 +96,7 @@ td, th {
 
     &--name, th, td {
       text-align: left;
-
+      min-width: 8rem;
       max-width: 13rem;
       white-space: nowrap;
       overflow: hidden;
@@ -123,7 +127,8 @@ td, th {
 
       @for $i from 0 through 20 { // TODO - CALCULATE SEQUENTIAL DELAY BASED ON NUM ROWS
         &:nth-child(#{$i}) {
-            animation-delay:(#{$splash-time-basketball + ($i * 300ms)});
+            animation-delay:(#{$splash-time-basketball + 
+              ($splash-time-title / 5) + ($i * 300ms)});
           }
         }
 

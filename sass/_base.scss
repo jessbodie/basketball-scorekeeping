@@ -6,15 +6,35 @@
   box-sizing: inherit;
 }
 
+
 html {
   box-sizing: border-box;
-  font-size: 62.5%; // 1rem = 10px
+  font-size: calc(6.5px + .5vw);
+  // font-size: 62.5%; // 1rem = 10px
+
+
+  // Auto rotate screens that are portrait and less than min-width (560px)
+  // Removed, clunky UI I think, need to do Manifest update:
+  // https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
+  // @media screen and (min-width: 240px) and (max-width: $app-min-width) and (orientation: portrait) {
+  //     transform: rotate(-90deg);
+  //     transform-origin: left top;
+  //     width: calc(100vh - 3em);
+  //     // overflow-x: hidden;
+  //     position: absolute;
+  //     top: 100%;
+  //     left: 0;
+  // }
 }
+
 
 body {
   font-family: $font-primary;
   font-size: $font-default-size;
   background-color: $color-home-light;
+  min-width: $app-min-width;
+  max-width: $app-max-width;
+  margin: 0 auto;
 }
 
 
@@ -34,7 +54,8 @@ body {
 
   color: $color-gray-dark;
   @include dropshadow;
-  z-index: 999;
+  z-index: $z-index-menu-btn;
+  cursor: pointer;
 
   &:hover,
   &:focus,
