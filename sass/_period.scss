@@ -31,9 +31,8 @@
       $color-secondary-dark, 
       $color-secondary-light);
     border: none;
-    box-shadow: .4rem .2rem 1.2rem rgba($color-black, .6);
-
-    
+    box-shadow: .4rem .2rem 1.2rem rgba($color-gray-dark, .6);
+   
 
     &:hover,
     &:focus,
@@ -41,6 +40,7 @@
       background: linear-gradient(-5deg,  
       $color-secondary-very-dark, 
       $color-secondary-dark);
+      cursor: pointer;
   }
 
     [type=radio] {
