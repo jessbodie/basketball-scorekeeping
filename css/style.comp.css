@@ -1,16 +1,3 @@
-/*
-0-600px: Phone
-600-900px: Tablet in portrait mode
-900-1200px: Tablet in landscape
-1200-1800 is where the normal styles apply
-1800+ : Big desktop
-
-$breakpoint argument choices:
-~ phone
-~ tab-port
-~ tab-land
-~ big-desktop
-*/
 *,
 *::before,
 *::after {
@@ -221,9 +208,10 @@ input[type=number] {
     border-top-left-radius: 5px;
     background: linear-gradient(-5deg, #b39c88, #cdbeb1);
     border: none;
-    box-shadow: 0.4rem 0.2rem 1.2rem rgba(34, 34, 34, 0.6); }
+    box-shadow: 0.4rem 0.2rem 1.2rem rgba(68, 79, 90, 0.6); }
     .period__num:hover, .period__num:focus, .period__num:active {
-      background: linear-gradient(-5deg, #8c715a, #b39c88); }
+      background: linear-gradient(-5deg, #8c715a, #b39c88);
+      cursor: pointer; }
     .period__num [type=radio] {
       display: none; }
       .period__num [type=radio]:checked ~ label {

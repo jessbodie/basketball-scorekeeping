@@ -14,13 +14,15 @@ var dataController = (function() {
                 score: 0,
                 fouls: 0,
                 timeouts: 0,
-                techs: 0
+                techs: 0,
+                teamID:""
             },
             guestSummary: {
                 score: 0,
                 fouls: 0,
                 timeouts: 0,
-                techs: 0
+                techs: 0,
+                teamID: ""
             }
         }
     }
@@ -47,6 +49,12 @@ var dataController = (function() {
         ["tech", { increment: 1, summaryField: "techs", summaryDOMid: "sb__tech--" }],
         ["to", { increment: 1, summaryField: "timeouts", summaryDOMid: "sb__to--" }]
     ]
+
+    // Define foul limits which vary by league
+    var bonus = {
+        single: 6,
+        double: 10
+    }
 
     // Get the basic data (roster and teams) from JSON
     var dataJSON;
@@ -83,18 +91,26 @@ var dataController = (function() {
             return dataJSON;
         },
 
-        getSummary: function() {
-            console.log(summary);
-            return summary;
+        // Return the game's summary data for the active team
+        getTeamSummary: function(team) {
+            String(team);
+            var summaryString = "summary.game." + String(team) + "Summary";
+            return (eval(summaryString));
         },
 
-        // 
+        // Return which team is currently active / which tab is in foreground
         getActiveTeam: function(team) {
-            activeTeam = team;
+            if (team) {
+                activeTeam = team;
+            }
             return activeTeam;
         },
 
-       
+        // Return Bonus object (largely static) 
+        getBonus: function() {
+            return bonus;
+        },
+        
         // Return the activityLookUp
         getActivityLookUp: function() {
             console.log(activityLookUp);
@@ -133,7 +149,19 @@ var dataController = (function() {
             return activity.activities;
         },
 
-        // Depending on activity type and team, 
+        // Update the team IDs for home and guest in the data summary object
+        updateSummaryIDs: function(homeTeamID, guestTeamID) {
+           summary.game.homeSummary.teamID = homeTeamID;
+           summary.game.guestSummary.teamID = guestTeamID;
+        },
+
+        // Update the team IDs for home and guest in the data summary object
+        updateSummaryFouls: function() {
+            summary.game.homeSummary.fouls = 0;
+            summary.game.guestSummary.fouls = 0;
+         },
+
+         // Depending on activity type and team, 
         // update data summary object and
         // return new corresponding summary amount and element
         updateSummary: function(team, type, changeVal) {
@@ -205,7 +233,7 @@ var UIController = (function() {
 
         // Add row for each player
         addPlayerRow: function(teamToggle, teamID, playerID, first, last, num) {
-
+ 
             // Set display name for roster column
             var firstInitial = first.substring(0, 1);
             var displayName = last + ", " + firstInitial + ".";
@@ -249,13 +277,36 @@ var UIController = (function() {
             }
         },
 
-        // Remove animation of Scokre Keeping rows 
+        // Remove animation of Score Keeping rows 
         removeSKAnimation: function() {
             var allPlayerRows = document.querySelectorAll(".sk__player");
             for (i = 0; i < allPlayerRows.length; i++) {
                 allPlayerRows[i].classList.remove("sk__player--animate");
             }
+        },
+
+        // Prevent splash animations from showing if page previously loaded
+        splashAnimation: function() {
+            var loadedBefore = sessionStorage.getItem("loaded");
+            if (!loadedBefore) {
+                // Clear flag (loadedBefore) and reset to true for 
+                // future page loads
+                sessionStorage.clear();
+                sessionStorage.setItem("loaded", "true");
+            } else if (loadedBefore === "true") {
+                // Remove Splash basketball animation
+                document.getElementById("splash__ball").setAttribute("style", "display: none");
+                // Remove Splash title animation
+                document.getElementById("splash__title").classList.remove("splash__title--anim");
+    
+                // Remove container for splash animations so layers underneath can be accessed
+                document.getElementById("splash__anim").setAttribute("style", "display: none");
+    
+                // Remove table row animation
+                UIController.removeSKAnimation();
+            }
         }
+    
     
     }
 })();
@@ -273,6 +324,7 @@ var controller = (function(UICtrl, dataCtrl) {
         // Display Home Team Name
         UICtrl.showDisplayText("team-name--home", basic.teamHome.name);
         UICtrl.showDisplayText("team-name--guest", basic.teamGuest.name);
+        
 
         // Display Rosters and table rows for Home and Guest teams
         function showRoster (teamToggle, teamID, teamRoster) {
@@ -289,6 +341,8 @@ var controller = (function(UICtrl, dataCtrl) {
         showRoster("home", basic.teamHome.id, basic.teamHome.roster);
         showRoster("guest", basic.teamGuest.id, basic.teamGuest.roster);
 
+        dataCtrl.updateSummaryIDs(basic.teamHome.id, basic.teamGuest.id);
+
 
         // Update Scoreboard elements with team-specific IDs
         document.getElementById("-home-to-in").id = basic.teamHome.id + "-home-to-in";
@@ -303,8 +357,12 @@ var controller = (function(UICtrl, dataCtrl) {
 
         // Score Keeping Buttons/Inputs  Event Listeners
         SKEventListeners();
+
+        // Reset splash animation so it only shows on first load
+        UICtrl.splashAnimation();
     }
-    
+
+
     // Event listeners
     var setupEventListeners = function() {
 
@@ -325,7 +383,15 @@ var controller = (function(UICtrl, dataCtrl) {
             });
         };
 
-    }    
+        // When Period 3 is clicked, reset Team Fouls and Bonus Indicators
+        document.getElementById("period__num--3").addEventListener("click", function() {
+            dataCtrl.updateSummaryFouls();
+            UICtrl.showDisplayText("sb__bb--home", "");
+            UICtrl.showDisplayText("sb__bb--guest", "");
+            UICtrl.showDisplayText("sb__fouls--home", "");
+            UICtrl.showDisplayText("sb__fouls--guest", "");
+        });
+    }   
         
     // Listen for button clicks in Score Keeping and send the input for processing
     // Called after JSON loaded
@@ -370,12 +436,12 @@ var controller = (function(UICtrl, dataCtrl) {
         }
 
         // Remove animation after it loads once for Home and Guest Tabs
-        document.getElementById("sb__tab--home").addEventListener("click", UICtrl.removeSKAnimation);
+        document.getElementById("sb__tab--guest").addEventListener("click", UICtrl.removeSKAnimation);
 
     }
 
     // Core function to process the inputs from buttons and text fields
-    // overWriteValue and prevValue neeced for text input fields only
+    // overWriteValue and prevValue needed for text input fields only
     function process(input, overWriteValue, prevValue) {
         // Change input activity to an array
         var newActivityArr = input.split("-");
@@ -398,6 +464,11 @@ var controller = (function(UICtrl, dataCtrl) {
             UICtrl.showDisplayText(elSB, amtSB);
         };
 
+        // 2B - For each foul, check and update Score Board Bonus Indicator
+        if (activityType == "pf") {
+            updateBB();
+        };
+
 
         // 3 - If button clicked and not overwrite from text input,
         // for each activity, update corresponding player's edit field
@@ -407,6 +478,33 @@ var controller = (function(UICtrl, dataCtrl) {
             amtPlayerActivity = parseInt(amtPlayerActivity, 10);
             UICtrl.showFieldText(elPlayerActivity, amtPlayerActivity);
         }
+    }
+
+    // Check and update Score Board Bonus Indicator
+    function updateBB() {
+            // Get the number of team fouls for the active team
+            var t = dataCtrl.getActiveTeam();
+            var teamSummary = dataCtrl.getTeamSummary(t);
+
+            // Get bonus limits
+            var b = dataCtrl.getBonus();
+
+            // Bonus displays for the not active team
+            if (t === "home") {
+                var bbDisplay = "guest"; 
+            } else {
+                var bbDisplay = "home";
+            }
+            //  If over first bonus limit display B for Bonus situation
+            if (teamSummary.fouls === b.single) {
+                UICtrl.showDisplayText("sb__bb--"+bbDisplay, "B");
+            }
+            //  If over second bonus limit display BB for Double Bonus
+            if (teamSummary.fouls === b.double) {
+                UICtrl.showDisplayText("sb__bb--"+bbDisplay, "BB");
+            }
+    
+            // reset at half time, overtime
     }
     
 
@@ -432,7 +530,6 @@ var controller = (function(UICtrl, dataCtrl) {
             var allJSONData = dataCtrl.getData();
             // console.log(allJSONData);
             showBasicData(allJSONData);
-
 
             return allJSONData;
         }    
