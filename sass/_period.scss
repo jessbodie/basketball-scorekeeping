@@ -4,7 +4,8 @@
   display: block;
   vertical-align: bottom;
   line-height: 0;
-  box-shadow: 0 .4rem .4rem rgba($color-gray-dark, .4);
+  // box-shadow: 0 .4rem .4rem rgba($color-gray-dark, .4);
+  border: 1px solid green;
 
   z-index: $z-index-periods;
 
