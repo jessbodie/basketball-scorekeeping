@@ -4,6 +4,8 @@
         [index-top] 1fr [index-bottom];
     grid-template-columns: 
         [index-left-start] 1fr [index-right-end];
+    grid-row-gap: 0;
+    grid-column-gap: 0;
     // min-height: 100vh;
     opacity: .99;
     z-index: $z-index-bottom;
@@ -35,10 +37,13 @@
         [sb-home-end sb-guest-start] minmax(12rem, 7fr) 
         [sb-guest-end right-end];
     // padding: 3rem 0 0 3rem; // DEBUG
+    grid-row-gap: 0;
+    grid-column-gap: 0;
     width: 100%;
     margin: 0 auto;
     opacity: .99;
     z-index: $z-index-bottom;
+
   }
 
 

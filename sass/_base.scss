@@ -56,6 +56,9 @@ body {
   @include dropshadow;
   z-index: $z-index-menu-btn;
   cursor: pointer;
+  vertical-align: top;
+  padding-top: 2px;
+  // border: 1px solid red;
 
   &:hover,
   &:focus,

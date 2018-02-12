@@ -29,7 +29,9 @@ body {
   color: #444F5A;
   box-shadow: 0.2rem 0.3rem 0.5rem rgba(34, 34, 34, 0.4);
   z-index: 150;
-  cursor: pointer; }
+  cursor: pointer;
+  vertical-align: top;
+  padding-top: 2px; }
   .btn-edit:hover, .btn-edit:focus, .btn-edit:active {
     background: radial-gradient(circle at bottom right, #F0F0F0 0%, #dbe2e8 70%, #889fb3 100%);
     color: #222222;
@@ -104,7 +106,7 @@ input[type=number] {
       width: 1.5rem;
       position: absolute;
       top: 48%;
-      left: .7rem;
+      left: .78rem;
       transition: transform 300ms; }
       .nav__btn-elements::before, .nav__btn-elements::after {
         background-color: #444F5A;
@@ -188,8 +190,9 @@ input[type=number] {
   grid-row: sb-end / sk-start;
   display: block;
   vertical-align: bottom;
+  height: 100%;
   line-height: 0;
-  box-shadow: 0 0.4rem 0.4rem rgba(68, 79, 90, 0.4);
+  margin: 0;
   z-index: 80; }
   .period form {
     width: 100%;
@@ -207,8 +210,20 @@ input[type=number] {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     background: linear-gradient(-5deg, #b39c88, #cdbeb1);
-    border: none;
-    box-shadow: 0.4rem 0.2rem 1.2rem rgba(68, 79, 90, 0.6); }
+    box-shadow: 1px 3px 5px rgba(68, 79, 90, 0.7);
+    position: relative; }
+    .period__num::after {
+      background: linear-gradient(-20deg, rgba(140, 113, 90, 0.6) 15%, rgba(140, 113, 90, 0));
+      width: 100%;
+      height: 100%;
+      display: inline;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: .99;
+      z-index: 150;
+      content: "";
+      pointer-events: none; }
     .period__num:hover, .period__num:focus, .period__num:active {
       background: linear-gradient(-5deg, #8c715a, #b39c88);
       cursor: pointer; }
@@ -225,7 +240,8 @@ input[type=number] {
       min-height: 100%;
       height: 100%;
       padding: .5rem;
-      z-index: 900; }
+      z-index: 900;
+      cursor: pointer; }
 
 .sb {
   display: grid;
@@ -237,7 +253,8 @@ input[type=number] {
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 50; }
+  z-index: 50;
+  vertical-align: bottom; }
   .sb--home {
     grid-row: 1 / sb-end;
     grid-column: sb-home-start / sb-home-end;
@@ -542,6 +559,8 @@ input[type=number] {
   display: grid;
   grid-template-rows: [index-top] 1fr [index-bottom];
   grid-template-columns: [index-left-start] 1fr [index-right-end];
+  grid-row-gap: 0;
+  grid-column-gap: 0;
   opacity: .99;
   z-index: 0; }
   .index header {
@@ -559,6 +578,8 @@ input[type=number] {
   display: grid;
   grid-template-rows: [sb-start] auto [sb-end] auto [sk-start] 1fr [sk-end];
   grid-template-columns: [left-start sb-home-start] minmax(18rem, 8fr) [sb-home-end sb-guest-start] minmax(12rem, 7fr) [sb-guest-end right-end];
+  grid-row-gap: 0;
+  grid-column-gap: 0;
   width: 100%;
   margin: 0 auto;
   opacity: .99;

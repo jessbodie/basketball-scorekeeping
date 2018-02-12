@@ -196,6 +196,7 @@ var dataController = (function() {
 
         updatePeriod: function(per) {
             summary.game.period = per;
+            console.log(summary.game);
         },
 
         // Depending on activity type, 
@@ -258,7 +259,7 @@ var UIController = (function() {
                 document.getElementById("sb_period").style.backgroundColor = "#BA5A31";
                 document.getElementById("sb__to-tech--home").style.visibility = "visible";
                 document.getElementById("sb__to-tech--guest").style.visibility = "hidden";
-                document.querySelector(".container").style.backgroundColor = "#E59F71";
+                document.querySelector(".container").style.background = "linear-gradient(#E59F71, #889fb3 25%)";
                 document.getElementById("sk").classList.add("sk--home");
                 document.getElementById("sk").classList.remove("sk--guest");
                 document.getElementById("sk__table--home").style.display = "block";
@@ -269,7 +270,7 @@ var UIController = (function() {
                 document.getElementById("sb_period").style.backgroundColor = "#889fb3";
                 document.getElementById("sb__to-tech--guest").style.visibility = "visible";
                 document.getElementById("sb__to-tech--home").style.visibility = "hidden";
-                document.querySelector(".container").style.backgroundColor = "#dbe2e8";
+                document.querySelector(".container").style.background = "linear-gradient(#dbe2e8, #BA5A31 25%)";
                 document.getElementById("sk").classList.add("sk--guest");
                 document.getElementById("sk").classList.remove("sk--home");
                 document.getElementById("sk__table--guest").style.display = "block";
@@ -377,7 +378,6 @@ var controller = (function(UICtrl, dataCtrl) {
         // When Period clicked, add Period to Activity object and update UI
         periodsList = document.querySelectorAll(".period__num");
         for (let i = 0; i < periodsList.length; i++) {
-
             periodsList[i].children[1].addEventListener("click", function(e) {
                 dataCtrl.updatePeriod(e.currentTarget.textContent);
             });
