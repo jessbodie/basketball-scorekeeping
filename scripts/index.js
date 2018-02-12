@@ -196,6 +196,7 @@ var dataController = (function() {
 
         updatePeriod: function(per) {
             summary.game.period = per;
+            console.log(summary.game);
         },
 
         // Depending on activity type, 
@@ -377,7 +378,6 @@ var controller = (function(UICtrl, dataCtrl) {
         // When Period clicked, add Period to Activity object and update UI
         periodsList = document.querySelectorAll(".period__num");
         for (let i = 0; i < periodsList.length; i++) {
-
             periodsList[i].children[1].addEventListener("click", function(e) {
                 dataCtrl.updatePeriod(e.currentTarget.textContent);
             });

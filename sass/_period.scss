@@ -45,8 +45,9 @@
       top: 0;
       left: 0;
       opacity: .99;
-      z-index:999;
+      z-index: $z-index-menu-btn;
       content:"";
+      pointer-events: none;
     }  
 
 
@@ -81,6 +82,7 @@
       padding: .5rem;
       z-index: 900;
       // border: 1px solid red;
+      cursor: pointer;
     }
     
 
