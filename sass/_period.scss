@@ -3,10 +3,10 @@
   // grid-column: sb-home-start / sb-home-end;
   display: block;
   vertical-align: bottom;
+  height: 100%;
   line-height: 0;
-  // box-shadow: 0 .4rem .4rem rgba($color-gray-dark, .4);
-  border: 1px solid green;
-
+  // box-shadow: 1px 2px 4px rgba($color-gray-dark, .9);
+  margin: 0;
   z-index: $z-index-periods;
 
   form {
@@ -29,11 +29,26 @@
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     background: linear-gradient(-5deg,  
-      $color-secondary-dark, 
-      $color-secondary-light);
-    border: none;
-    box-shadow: .4rem .2rem 1.2rem rgba($color-gray-dark, .6);
-   
+      rgba($color-secondary-dark, 1), 
+      rgba($color-secondary-light, 1));
+    box-shadow: 1px 3px 5px rgba($color-gray-dark, .7);
+    position: relative;
+  
+    &::after {
+      background: linear-gradient(-20deg,  
+        rgba($color-secondary-very-dark, .6) 15%, 
+        rgba($color-secondary-very-dark, 0));
+      width: 100%;
+      height: 100%;
+      display: inline;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: .99;
+      z-index:999;
+      content:"";
+    }  
+
 
     &:hover,
     &:focus,
@@ -42,7 +57,8 @@
       $color-secondary-very-dark, 
       $color-secondary-dark);
       cursor: pointer;
-  }
+
+    }
 
     [type=radio] {
       display: none;
